@@ -2169,6 +2169,11 @@ diff-sequences@^27.5.1:
   resolved "https://artifactory.softplan.com.br:443/artifactory/api/npm/npm/diff-sequences/-/diff-sequences-27.5.1.tgz#eaecc0d327fd68c8d9672a1e64ab8dccb2ef5327"
   integrity sha1-6uzA0yf9aMjZZyoeZKuNzLLvUyc=
 
+dinero.js@^1.9.1:
+  version "1.9.1"
+  resolved "https://artifactory.softplan.com.br:443/artifactory/api/npm/npm/dinero.js/-/dinero.js-1.9.1.tgz#64b10ce7277a07805dac9c8cd6500e9b7d0aee96"
+  integrity sha1-ZLEM5yd6B4BdrJyM1lAOm30K7pY=
+
 domexception@^2.0.1:
   version "2.0.1"
   resolved "https://artifactory.softplan.com.br:443/artifactory/api/npm/npm/domexception/-/domexception-2.0.1.tgz#fb44aefba793e1574b0af6aed2801d057529f304"

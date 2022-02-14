@@ -21,7 +21,7 @@ describe('Cart', () => {
 
     it('shoud be return 0 when getTotal() is executed in a newly created instance', () => {
 
-      expect(cart.getTotal()).toEqual(0)
+      expect(cart.getTotal().getAmount()).toEqual(0)
     })
 
     it('shoud be multiply quantity and price and receive the total amount', () => {
@@ -31,7 +31,7 @@ describe('Cart', () => {
       }
       cart.add(item)
 
-      expect(cart.getTotal()).toEqual(70)
+      expect(cart.getTotal().getAmount()).toEqual(70)
 
     })
 
@@ -46,7 +46,7 @@ describe('Cart', () => {
         quantity: 1,
       })
 
-      expect(cart.getTotal()).toEqual(35)
+      expect(cart.getTotal().getAmount()).toEqual(35)
     })
 
     it('shoud be update total when a product gets included and then remove', () => {
@@ -65,7 +65,7 @@ describe('Cart', () => {
 
       )
 
-      expect(cart.getTotal()).toEqual(150)
+      expect(cart.getTotal().getAmount()).toEqual(150)
 
     })
   })
@@ -95,8 +95,25 @@ describe('Cart', () => {
       cart.checkout()
 
 
-      expect(cart.getTotal()).toEqual(0)
+      expect(cart.getTotal().getAmount()).toEqual(0)
 
+    })
+  })
+
+  describe('special conditions', () => {
+    it('should be aplly percentage discount quantity above minimum is passed', () => {
+      const condition = {
+        percentage: 30,
+        minimum: 2
+      }
+
+      cart.add({
+        product,
+        condition,
+        quantity: 3
+      })
+
+      expect(cart.getTotal().getAmount()).toEqual(73)
     })
   })
 

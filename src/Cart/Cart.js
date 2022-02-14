@@ -1,4 +1,10 @@
 import find, { remove } from 'lodash'
+import Dinero from 'dinero.js'
+
+
+Dinero.defaultCurrency = 'BRL';
+Dinero.defaultPrecision = 2;
+
 
 export class Cart {
   cart = []
@@ -16,12 +22,21 @@ export class Cart {
 
   getTotal() {
     return this.cart.reduce((acc, item) => {
-      return acc + item.quantity * item.product.price
-    }, 0)
+      const amount = Dinero({ amount: item.quantity * item.product.price })
+      let discount = Dinero({ amount: 0 })
+
+
+      if (item.condition && item.condition.percentage && item.quantity > 2) {
+        discount = amount.percentage(item.condition.percentage
+        )
+      }
+
+      return acc.add(amount).subtract(discount)
+    }, Dinero({ amount: 0 }))
   }
 
   summary() {
-    const total = this.getTotal();
+    const total = this.getTotal().getAmount();
     const items = this.cart;
 
     return {
@@ -31,7 +46,7 @@ export class Cart {
   }
 
   checkout() {
-    const total = this.getTotal();
+    const total = this.getTotal()
     const items = this.cart;
 
     this.cart = []
